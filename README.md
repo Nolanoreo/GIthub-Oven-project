@@ -91,3 +91,53 @@ Author Information
 Authors: Co-pilot and Nolan Runge
 What I learned:
 During this project, I learned how objects interact with one another, how to design multiple constructors, and how to model real-world behavior in code. I also gained experience organizing code into separate classes and using a tester class to run demonstrations.
+
+
+Class Diagram:
+
+classDiagram
+    class Oven {
+        - boolean bakeOn
+        - boolean broilOn
+        - boolean doorOpen
+        - int bakeTemp
+        - int broilTemp
+        - String brand
+        - Timer timer
+        + Oven()
+        + Oven(String brand, int bakeTemp, int broilTemp, int timerSeconds)
+        + boolean isBakeOn()
+        + boolean isBroilOn()
+        + boolean isDoorOpen()
+        + int getBakeTemp()
+        + int getBroilTemp()
+        + String getBrand()
+        + Timer getTimer()
+        + void setBake(boolean on, int temperature)
+        + void setBroil(boolean on, int temperature)
+        + void setDoorOpen(boolean open)
+        + void setBrand(String brand)
+        + void setTimerSeconds(int seconds)
+        + void startCooking()
+        + void stopCooking()
+        + String toString()
+    }
+
+    class Timer {
+        - int seconds
+        + Timer()
+        + Timer(int seconds)
+        + int getSeconds()
+        + void setSeconds(int seconds)
+        + void startTimer()
+        + void beep(int times)
+        + String toString()
+    }
+
+    class OvenTester {
+        + main(String[] args)
+    }
+
+    Oven --> Timer : has-a
+    OvenTester --> Oven : uses
+    OvenTester --> Timer : uses indirectly
